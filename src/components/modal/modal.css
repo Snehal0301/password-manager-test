@@ -1,0 +1,127 @@
+.addSiteModal {
+  color: #3c4857;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 41px;
+}
+
+.url {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.inputStyle {
+  border: none;
+  outline: none;
+  border: 1px solid #f5f7fb;
+  border-radius: 4px;
+  background-color: #f5f7fb;
+  height: 29px;
+  padding: 16px;
+  width: 100%;
+  color: #3c4858;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 22px;
+}
+
+textarea.inputStyle {
+  height: 3rem;
+}
+
+.inputStyle:focus {
+  border: 1px solid #dedede;
+}
+
+.firstLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 1rem 0rem;
+}
+
+.siteName,
+.selectFolder,
+.userName,
+.sitePassword {
+  flex-grow: 1;
+}
+
+.modalButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modalButtons {
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: -1px;
+  border: none;
+  cursor: pointer;
+  padding: 6px 50px;
+  border-radius: 5px;
+  margin-top: 2rem;
+  height: 46px;
+  width: 181px;
+}
+
+
+.button2 {
+  background-color: white;
+  color: var(--color);
+  border: 1px solid var(--color);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.save {
+  background-color: #0E85FF;
+  color: white;
+  border: 1px solid var(--color);
+  font-weight: 800;
+}
+
+/* .button2:hover {
+  background-color: var(--color);
+  color: white;
+} */
+
+.sitePassword {
+  position: relative;
+}
+
+.sitePassword img {
+  position: absolute;
+  top: 27px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.passwordEye {
+  position: absolute;
+  top: 1.5rem;
+  right: 5px;
+}
+
+.classLabel {
+  color: #949ca5;
+  font-family: 'Open Sans';
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 24px;
+  margin-bottom: 1px;
+  text-transform: capitalize;
+}
+
+.textArea textarea {
+  height: 61px;
+}
+
+@media only screen and (max-width: 700px){
+  
+}
