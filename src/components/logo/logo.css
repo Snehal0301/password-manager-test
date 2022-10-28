@@ -44,3 +44,11 @@
     justify-content: center;
     padding: 3rem;
 }
+
+
+/* tabs */
+
+.bloc-tabs {
+    display: flex;
+    justify-content: space-around;
+}

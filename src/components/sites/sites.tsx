@@ -3,14 +3,17 @@ import { useState } from 'react'
 import Card from '../card/card'
 import Modal from '../modal/modal'
 
-const Sites = () => {
+const Sites = (props: any) => {
   const [modal, setModal] = useState('')
   const [edit, setEdit] = useState(false);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
+  const [specificUser, setSpecificUser] = useState('')
+  const [siteId, setSiteId] = useState(0)
 
-  const editModal = () => {
+  const editModal = (id: number) => {
     setEdit(!edit);
-    console.log(edit)
+    setSiteId(id);
+    setSpecificUser(JSON.parse(localStorage.getItem(currentUser) || '[]')[id])
   }
 
   const handleSearch = (e: any) => {
@@ -79,7 +82,11 @@ const Sites = () => {
                 <div className="sites_1">Sites</div>
                 <div className="mobileMedia">
                   <div className="media">Social Media</div>
-                  <div className="mediaCount">07</div>
+                  <div className="mediaCount">
+                    {sites.length < 10
+                      ? `0${sites.length}`
+                      : sites.length}
+                  </div>
                 </div>
               </div>
             </div>
@@ -90,7 +97,7 @@ const Sites = () => {
                 {
                   sites.filter((site: any) => {
                     return search.toLowerCase() === '' ? site : site.sitename.toLowerCase().includes(search.toLowerCase())
-                  }).map((site: any) => {
+                  }).map((site: any, id: number) => {
                     return (
                       <>
                         <div className="cardContainer" >
@@ -118,7 +125,7 @@ const Sites = () => {
                                 </div>
                               </div>
                             </div>
-                            <div className="linkContainer" onClick={editModal}>
+                            <div className="linkContainer" onClick={() => editModal(id)}>
                               <div className="socialMediaLink">{site.url}</div>
                             </div>
                           </div>
@@ -172,7 +179,7 @@ const Sites = () => {
             <div className="overlay">
               <div className="modelInfo">
                 <div className="modalContent">
-                  <Modal type="edit" />
+                  <Modal type="edit" content={specificUser} id={siteId} />
                   <button className="close-modal">
                     <img
                       src={require('../../assets/icons/close_btn.png')}

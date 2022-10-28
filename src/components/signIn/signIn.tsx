@@ -18,15 +18,6 @@ const SignIn = () => {
     const newArr: any[] = []
     const userData = JSON.parse(localStorage.getItem('users') || '[]')
     userData.map((user: any) => {
-      // if (mobile === user.mobile) {
-
-      //   if (mPin === user.mPin) {
-      //     navigate("/dashBoard");
-      //   }
-
-      //  }else{
-      //   alert("enter proper values...")
-      //  }
 
       if (mobile === user.mobile && mPin === user.mPin) {
         newArr.push('exists')

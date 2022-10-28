@@ -1,9 +1,16 @@
 import "./logo.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../modal/modal";
+import SignIn from "../signIn/signIn";
 
 const Logo = () => {
   const [selected, setSelected] = useState("login");
+  const [toggleState, setToggleState] = useState(1);
+
+  const toggleTab = (index: any) => {
+    setToggleState(index);
+  };
 
   return (
     <div>
@@ -29,18 +36,13 @@ const Logo = () => {
             className="lockImg"
           />
         </div>
-        <div className="tabs">
-          <div className={selected === "login" ? "underline" : ""}>
+        <div className="bloc-tabs">
+          <div className={toggleState === 1 ? "underline" : ""} onClick={()=>toggleTab(1)}>
             <Link to="/" className="mobileSignIn">
               sign In
             </Link>
           </div>
-          <div
-            className={selected === "signUp" ? "underline" : ""}
-            onClick={() => {
-              setSelected("signUp");
-            }}
-          >
+          <div className={toggleState === 2 ? "underline" : ""} onClick={() => toggleTab(2)}>
             <Link to="/register" className="mobileSignIn">
               sign up
             </Link>

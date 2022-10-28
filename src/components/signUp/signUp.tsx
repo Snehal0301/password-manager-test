@@ -15,13 +15,8 @@ const SignUp = () => {
   }
 
   const storeUsers = localStorage.getItem('users') || '[]'
-  //   if (storeUsers === "[]") {
-  //   localStorage.setItem(
-  //     "users",
-  //     JSON.stringify([{ mobile: "2345678909", pin: "1111", mPin: "1111" }])
-  //   );
-  //   }
-  console.log('storeUsers', storeUsers)
+
+  // console.log('storeUsers', storeUsers)
 
   const signUpHandler = (event: any) => {
     event.preventDefault()

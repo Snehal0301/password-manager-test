@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import './header.css'
-const Header = () => {
+import {useState} from 'react'
+const Header = (props:any) => {
+
+  const [search,setSearch] = useState("")
 
   const navigate = useNavigate()
 
@@ -8,6 +11,13 @@ const Header = () => {
     localStorage.setItem('auth', JSON.stringify(false))
     navigate('/')
   }
+
+  const searchInput = (e:any) => {
+    setSearch(e.target.value);
+    console.log(search);
+  }
+
+  props.getSearch(search)
   
   return (
     <div>
@@ -50,21 +60,42 @@ const Header = () => {
             />
           </div>
           <div className="profileMobile">
-            <img
+            {/* <img
               src={require('../../assets/icons/search (2).png')}
               alt="icon"
               className="iconsImg"
-            />
+            /> */}
+            <div className="search">
+              <input type="text" onChange={searchInput}/>
+              <img
+                src={require('../../assets/icons/search (2).png')}
+                alt="icon"
+                className="iconsImg"
+              />
+            </div>
             <img
               src={require('../../assets/icons/sync_icn.png')}
               alt="icon"
               className="iconsImg"
             />
-            <img
+            {/* <img
               src={require('../../assets/icons/profile (2).png')}
               alt="icon"
               className="iconsImg"
-            />
+            /> */}
+            <div className="dropdown mobile">
+              <img src={require('../../assets/icons/profile (2).png')} alt="icon" />
+              <div className="dropdown-content">
+                <div className="change-pass">
+                  <p>Change Password</p>
+                  <img src={require('../../assets/icons/lock.png')} alt="lock" />
+                </div>
+                <div className="sign-out" onClick={signOut}>
+                  <p>Sign Out</p>
+                  <img src={require('../../assets/icons/logout.png')} alt="lock" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
