@@ -6,13 +6,26 @@ import Modal from '../modal/modal'
 const Sites = () => {
   const [modal, setModal] = useState('')
   const [edit, setEdit] = useState(false);
+  const [search, setSearch] = useState("")
 
   const editModal = () => {
     setEdit(!edit);
     console.log(edit)
   }
 
-  const sites = JSON.parse(localStorage.getItem("signup") || "[]")
+  const handleSearch = (e: any) => {
+    setSearch(e.target.value)
+    console.log(search);
+  }
+
+  const copyPassword = (site: any) => {
+    navigator.clipboard.writeText(site.sitepassword)
+    alert("password copied")
+  }
+
+  const currentUser = JSON.parse(localStorage.getItem('curentuser') || '');
+
+  const sites = JSON.parse(localStorage.getItem(currentUser) || "[]")
 
 
   return (
@@ -22,7 +35,7 @@ const Sites = () => {
           <div className="sites">Sites</div>
           <div className="searchBar">
             <div className="search">
-              <input type="text" placeholder="Search" className="searchInput" />
+              <input type="text" placeholder="Search" className="searchInput" onChange={handleSearch} />
               <img
                 src={require('../../assets/icons/search.png')}
                 alt="icon"
@@ -53,7 +66,11 @@ const Sites = () => {
             <div className="socialMediaDesktop">
               <div className="socialMedia">
                 <div className="media">Social Media</div>
-                <div className="mediaCount">07</div>
+                <div className="mediaCount">
+                  {sites.length < 10
+                    ? `0${sites.length}`
+                    : sites.length}
+                </div>
               </div>
             </div>
 
@@ -71,7 +88,9 @@ const Sites = () => {
               {/* <Card /> */}
               <div className="wrapContainer">
                 {
-                  sites.map((site: any) => {
+                  sites.filter((site: any) => {
+                    return search.toLowerCase() === '' ? site : site.sitename.toLowerCase().includes(search.toLowerCase())
+                  }).map((site: any) => {
                     return (
                       <>
                         <div className="cardContainer" >
@@ -84,7 +103,7 @@ const Sites = () => {
                                 />
                               </div>
                               <div className="sameLine">
-                                <div className="socialMediaName">{site.sitename }</div>
+                                <div className="socialMediaName">{site.sitename}</div>
                                 <div className="copy">
                                   <div className="copyImg">
                                     {' '}
@@ -93,7 +112,9 @@ const Sites = () => {
                                       alt="icon"
                                     />
                                   </div>
-                                  <div className="copyText" onClick={() => { navigator.clipboard.writeText(site.sitepassword) }}>copy password</div>
+                                  <div className="copyText" onClick={
+                                    () => copyPassword(site)
+                                  }>copy password</div>
                                 </div>
                               </div>
                             </div>

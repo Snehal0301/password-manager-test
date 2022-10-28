@@ -62,6 +62,7 @@
   text-transform: uppercase;
   color: #0e85ff;
   margin: 2rem 0rem;
+  cursor: pointer;
 }
 
 .createAccount {

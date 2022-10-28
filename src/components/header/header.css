@@ -59,39 +59,53 @@
   min-width: 260px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  padding:0 10px;
+  padding: 0 10px;
 }
 
-.dropdown-content .change-pass{
+.dropdown-content .change-pass {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
-.dropdown-content .sign-out{
+.dropdown-content .change-pass:hover {
+  background-color: white;
+}
+
+.dropdown-content .sign-out {
   display: flex;
-    justify-content: space-between;
-    align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
-.dropdown-content .change-pass p{
+.dropdown-content .sign-out:hover{
+  background-color: white;
+
+}
+
+.dropdown-content .change-pass p {
   font-size: 15px;
 }
-.dropdown-content .sign-out p{
+
+.dropdown-content .sign-out p {
   font-size: 15px;
 
 }
 
-.dropdown-content .change-pass img{
+.dropdown-content .change-pass img {
   margin-right: 5px;
   width: 20px;
   height: 20px;
 }
-.dropdown-content .sign-out img{
+
+.dropdown-content .sign-out img {
   margin-right: 2px;
   width: 20px;
   height: 20px;
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
 }

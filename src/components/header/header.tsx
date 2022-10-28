@@ -1,6 +1,14 @@
+import { useNavigate } from 'react-router-dom'
 import './header.css'
-
 const Header = () => {
+
+  const navigate = useNavigate()
+
+  const signOut = () => {
+    localStorage.setItem('auth', JSON.stringify(false))
+    navigate('/')
+  }
+  
   return (
     <div>
       <div className="headerContainer">
@@ -17,9 +25,8 @@ const Header = () => {
               <div className="change-pass">
                 <p>Change Password</p>
                 <img src={require('../../assets/icons/lock.png')} alt="lock" />
-
               </div>
-              <div className="sign-out">
+              <div className="sign-out" onClick={signOut}>
                 <p>Sign Out</p>
                 <img src={require('../../assets/icons/logout.png')} alt="lock" />
               </div>

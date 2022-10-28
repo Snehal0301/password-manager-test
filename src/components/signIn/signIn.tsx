@@ -33,6 +33,8 @@ const SignIn = () => {
       }
     })
     if (newArr.includes('exists')) {
+      localStorage.setItem('curentuser', JSON.stringify(mobile))
+      localStorage.setItem('auth', JSON.stringify(true))
       navigate('/dashBoard')
     } else {
       alert('please signUp to Login...')

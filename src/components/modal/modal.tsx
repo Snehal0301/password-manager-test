@@ -12,14 +12,25 @@ const Modal = ({ type }: any) => {
     notes: ""
   })
 
-  const [siteData, setSiteData]: any = useState([])
+  // const [siteData, setSiteData]: any = useState([])
+
+  const currentUser = JSON.parse(localStorage.getItem('curentuser')||'[]');
+
+  const res = JSON.parse(localStorage.getItem(JSON.stringify(currentUser)) || '[]');
+  
+  if (JSON.stringify(res) === JSON.stringify([])) {
+    localStorage.setItem(JSON.stringify(currentUser),'[]')
+  }
+  console.log(res)
 
 
   const getFormData = (e: any) => {
     e.preventDefault();
-    setSiteData([...siteData, formData])
+    const siteData = JSON.parse(localStorage.getItem(currentUser) || '[]')
+    const newData = [...siteData, formData]
+    // setSiteData([...siteData, formData])
+    localStorage.setItem(currentUser,JSON.stringify(newData))
   }
-  localStorage.setItem("signup",JSON.stringify(siteData))
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
