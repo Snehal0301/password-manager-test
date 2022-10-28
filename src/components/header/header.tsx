@@ -65,14 +65,19 @@ const Header = (props:any) => {
               alt="icon"
               className="iconsImg"
             /> */}
-            <div className="search">
+            {/* <div className="search">
               <input type="text" onChange={searchInput}/>
               <img
                 src={require('../../assets/icons/search (2).png')}
                 alt="icon"
                 className="iconsImg"
               />
-            </div>
+            </div> */}
+            <img
+              src={require('../../assets/icons/search (2).png')}
+              alt="icon"
+              className="iconsImg"
+            />
             <img
               src={require('../../assets/icons/sync_icn.png')}
               alt="icon"

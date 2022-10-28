@@ -30,7 +30,9 @@ const Sites = (props: any) => {
 
   const sites = JSON.parse(localStorage.getItem(currentUser) || "[]")
 
-
+  const getModalState = (state: any) => {
+    setModal(state)
+  }
   return (
     <div>
       <div className="siteContainer">
@@ -154,7 +156,7 @@ const Sites = (props: any) => {
           <div className="overlay">
             <div className="modelInfo">
               <div className="modalContent">
-                <Modal type="add" />
+                <Modal type="add" getModalState={getModalState} />
                 <button className="close-modal">
                   <img
                     src={require('../../assets/icons/close_btn.png')}

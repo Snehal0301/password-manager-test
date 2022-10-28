@@ -258,6 +258,7 @@
 .linkContainer {
   background-color: #f5f7fb65;
   padding: 10px;
+  cursor: pointer;
 }
 
 .addButton {
