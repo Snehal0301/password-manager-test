@@ -3,9 +3,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-
+.toast{
+    margin-bottom: 10px;
+}
 
 .loginContainer {
     display: flex;
