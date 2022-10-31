@@ -1,10 +1,13 @@
 import './signIn.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-
+import { encrypt, decrypt } from 'n-krypta'
 const SignIn = () => {
-  const [pin, setPin] = useState<Boolean>(false)
+
   const navigate = useNavigate()
+  const secretKey = 'k'
+
+  const [pin, setPin] = useState<Boolean>(false)
   const togglePin = () => {
     setPin(!pin)
   }
@@ -18,8 +21,10 @@ const SignIn = () => {
     const newArr: any[] = []
     const userData = JSON.parse(localStorage.getItem('users') || '[]')
     userData.map((user: any) => {
+      console.log(user.encryptedMPin);
+      const decryptedMpin = decrypt(user.encryptedMPin,secretKey)
 
-      if (mobile === user.mobile && mPin === user.mPin) {
+      if (mobile === user.mobile && mPin === decryptedMpin) {
         newArr.push('exists')
       }
     })
@@ -32,53 +37,53 @@ const SignIn = () => {
     }
   }
   return (
-    <div>
-      {' '}
-      <div className="leftContainer">
-        <div className="signInText">SIGN IN TO YOUR ACCOUNT</div>
-        <form className="formContainer" onSubmit={submitHandler}>
-          <div className="">
-            <input
-              type="text"
-              placeholder="MobileNo"
-              className="inputField"
-              required
-              minLength={10}
-              maxLength={10}
-              name="mobile"
-            />
-          </div>
-          <div className="passwordPin">
-            <input
-              type={pin ? 'text' : 'password'}
-              placeholder="MPin"
-              className="inputField"
-              required
-              minLength={4}
-              maxLength={4}
-              name="mPin"
-            />
-            <img
-              src={require('../../assets/icons/eye_on.png')}
-              alt="img"
-              className="eyeIcon"
-              onClick={togglePin}
-            />
-          </div>
-          <div className="forgotPassword">Forgot your password?</div>
-          <button className="signInButton">SIGN IN</button>
-          <div className="createAccount">
-            Don’t have a Account?{' '}
-            <span>
-              &nbsp;
-              <Link to="/register" className="linkButton">
-                SIGNUP
-              </Link>
-            </span>
-          </div>
-        </form>
+      <div>
+        {' '}
+        <div className="leftContainer">
+          <div className="signInText">SIGN IN TO YOUR ACCOUNT</div>
+          <form className="formContainer" onSubmit={submitHandler}>
+            <div className="">
+              <input
+                type="text"
+                placeholder="MobileNo"
+                className="inputField"
+                required
+                minLength={10}
+                maxLength={10}
+                name="mobile"
+              />
+            </div>
+            <div className="passwordPin">
+              <input
+                type={pin ? 'text' : 'password'}
+                placeholder="MPin"
+                className="inputField"
+                required
+                minLength={4}
+                maxLength={4}
+                name="mPin"
+              />
+              <img
+                src={require('../../assets/icons/eye_on.png')}
+                alt="img"
+                className="eyeIcon"
+                onClick={togglePin}
+              />
+            </div>
+            <div className="forgotPassword">Forgot your password?</div>
+            <button className="signInButton">SIGN IN</button>
+            <div className="createAccount">
+              Don’t have a Account?{' '}
+              <span>
+                &nbsp;
+                <Link to="/register" className="linkButton">
+                  SIGNUP
+                </Link>
+              </span>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
   )
 }
 

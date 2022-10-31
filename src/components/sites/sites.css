@@ -71,6 +71,14 @@
   background-color: transparent;
 }
 
+.search-mobile-input{
+  display: none;
+}
+
+.search-mobile-input input{
+  width:100%
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -126,7 +134,7 @@
 }
 
 .card {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 /*modal*/
@@ -346,5 +354,12 @@
 @media only screen and (max-width: 700px) {
   .cardContainer {
     width: 100%;
+  }
+
+  .search-mobile-input{
+    display: block;
+  }
+  .card{
+    margin-top: -3rem;
   }
 }

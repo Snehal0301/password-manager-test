@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react' 
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/header/header'
 import SideBar from '../../components/sideBar/sideBar'
@@ -8,20 +8,25 @@ import './dashBoard.css'
 const DashBoard = () => {
 
   const navigate = useNavigate();
-  const [search,setSearch] = useState("")
+  const [search, setSearch] = useState("")
+  const [mobilesearch, setMobileSearch] = useState(false)
 
   useEffect(() => {
-    const auth = JSON.parse(localStorage.getItem('auth')||'[]');
+    const auth = JSON.parse(localStorage.getItem('auth') || '[]');
     if (auth != true) {
-        navigate('/')
-      }
+      navigate('/')
+    }
   }, [])
-  
-  const getSearch = (value:any) => {
+
+  const getSearch = (value: any) => {
     console.log("from dashboard", value)
     setSearch(search)
   }
-    
+
+  const getMobileSearch = (data: any) => {
+    setMobileSearch(data)
+  }
+
 
   return (
     <div>
@@ -31,11 +36,11 @@ const DashBoard = () => {
         </div>
 
         <div className="dashBoardHeader">
-          <Header getSearch={getSearch} />
+          <Header getSearch={getSearch} getMobileSearch={getMobileSearch} />
         </div>
 
         <div className="dashBoardSites">
-          <Sites mobileSearch={search} />
+          <Sites mobilesearch={mobilesearch} />
         </div>
       </div>
     </div>

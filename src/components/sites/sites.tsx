@@ -18,12 +18,11 @@ const Sites = (props: any) => {
 
   const handleSearch = (e: any) => {
     setSearch(e.target.value)
-    console.log(search);
   }
 
   const copyPassword = (site: any) => {
     navigator.clipboard.writeText(site.sitepassword)
-    alert("password copied")
+    alert("PASSWORD COPIED")
   }
 
   const currentUser = JSON.parse(localStorage.getItem('curentuser') || '');
@@ -91,10 +90,16 @@ const Sites = (props: any) => {
                   </div>
                 </div>
               </div>
+
             </div>
+            {
+              props.mobilesearch &&
+              <div className="search-mobile-input">
+                <input type="text" placeholder="Search" className="searchInput mobile-input" onChange={handleSearch} />
+              </div>
+            }
 
             <div className="card">
-              {/* <Card /> */}
               <div className="wrapContainer">
                 {
                   sites.filter((site: any) => {
@@ -107,8 +112,15 @@ const Sites = (props: any) => {
                             <div className="socialMediaLogo">
                               <div className="mediaLogo">
                                 <img
-                                  src={require('../../assets/icons/Facebook.png')}
-                                  alt="icon"
+                                  src={`https://app.outboundsales.io/api/logo/${site.sitename}.com`}
+                                  height="50px"
+                                  width="50px"
+                                  alt={site.sitename}
+                                  style={{
+                                    backgroundPosition: 'center',
+                                    borderRadius: '50%',
+                                    backgroundSize: 'cover'
+                                  }}
                                 />
                               </div>
                               <div className="sameLine">
@@ -156,7 +168,7 @@ const Sites = (props: any) => {
           <div className="overlay">
             <div className="modelInfo">
               <div className="modalContent">
-                <Modal type="add" getModalState={getModalState} />
+                <Modal type="add" />
                 <button className="close-modal">
                   <img
                     src={require('../../assets/icons/close_btn.png')}

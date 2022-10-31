@@ -4,6 +4,7 @@ import {useState} from 'react'
 const Header = (props:any) => {
 
   const [search,setSearch] = useState("")
+  const [mobileSearch, setMobileSearch] = useState(false)
 
   const navigate = useNavigate()
 
@@ -18,6 +19,7 @@ const Header = (props:any) => {
   }
 
   props.getSearch(search)
+  props.getMobileSearch(mobileSearch)
   
   return (
     <div>
@@ -77,6 +79,7 @@ const Header = (props:any) => {
               src={require('../../assets/icons/search (2).png')}
               alt="icon"
               className="iconsImg"
+              onClick={() => setMobileSearch(!mobileSearch)}
             />
             <img
               src={require('../../assets/icons/sync_icn.png')}

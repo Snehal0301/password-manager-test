@@ -1,8 +1,17 @@
 import './signUp.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import {encrypt,decrypt} from 'n-krypta'
 
 const SignUp = () => {
+
+  const secretKey = 'k'
+  const text = '1234'
+  const encryptedText = encrypt(text, secretKey)
+  const decryptedText = decrypt(encryptedText, secretKey)
+  console.log("encryptedText",encryptedText)
+  console.log("decryptedText",decryptedText)
+
   const navigate = useNavigate()
   const [togglePin, setTogglePin] = useState<Boolean>(false)
   const onToggleChange = () => {
@@ -16,19 +25,25 @@ const SignUp = () => {
 
   const storeUsers = localStorage.getItem('users') || '[]'
 
-  // console.log('storeUsers', storeUsers)
-
   const signUpHandler = (event: any) => {
     event.preventDefault()
 
-    const mobile = event.target.mobile.value
-    const pin = event.target.pin.value
-    const mPin = event.target.mPin.value
+    const mobile = event.target.mobile.value;
+    const pin = event.target.pin.value;
+    const encryptedPin = encrypt(pin,secretKey)
+    // const decryptedPin = decrypt(encryptedPin,secretKey)
+    const mPin = event.target.mPin.value;
+    const encryptedMPin = encrypt(mPin,secretKey)
 
+    // const userData = {
+    //   mobile,
+    //   pin,
+    //   mPin,
+    // }
     const userData = {
       mobile,
-      pin,
-      mPin,
+      encryptedPin,
+      encryptedMPin,
     }
 
     const previousData = JSON.parse(localStorage.getItem('users') || '[]')
@@ -44,12 +59,13 @@ const SignUp = () => {
     if (arr.includes('exist')) {
       alert('user already exist')
     } else {
-      if (mobile === '' && pin === '' && mPin === '') {
+      if (mobile === '' && encryptedPin === '' && encryptedMPin === '') {
         alert('enter all fields')
       } else {
-        if (pin === mPin) {
+        if (encryptedPin === encryptedMPin) {
           previousData.push(userData)
           localStorage.setItem('users', JSON.stringify(previousData))
+          localStorage.setItem('status','true')
           navigate('/')
         } else {
           alert('enter same pins')
